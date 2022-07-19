@@ -1,16 +1,21 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 class Branch {
-    int childCount = 0;
     Branch* parent = nullptr;
-    Branch* child = nullptr;
+    std::vector<Branch*> child;
     std::string name = "none";
 private:
-    static int randomTo(int number);
+    static int randomRange(int from, int to);
+    void setChild();
+    Branch* findBigBranch();
 
 public:
-    Branch* getTopBranch();
-    void setChild(Branch* inChild);
-    Branch* createTree();
+    void createTree();
+    void enterNames();
+    void writeNames();
+    void createElves(const std::string& elfName, int index);
+    Branch* findElf(const std::string& elfName);
+    int findNeighbours(Branch* elfBranch);
 };
